@@ -5,10 +5,102 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
-
-    <title>Principal</title>
+    <title>Empresa</title>
 
     <style>
+        /* Reset básico */
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+
+        /* Layout principal */
+        .main-wrapper {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Sidebar fijo */
+        .sidebar-fixed {
+            width: 250px;
+            min-height: 100vh;
+            position: fixed;
+            left: 0;
+            background: #0d6efd;
+            color: white;
+            z-index: 1000;
+        }
+
+        /* Contenido principal */
+        .main-content {
+            flex: 1;
+            margin-left: 250px;
+            /* Igual al ancho del sidebar */
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* Header ajustado */
+        .main-header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: white;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            width: 100%;
+        }
+
+        /* Contenido desplazable */
+        .scrollable-content {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
+        }
+
+        /* Responsive: ocultar sidebar en móviles */
+        @media (max-width: 767.98px) {
+            .sidebar-fixed {
+                display: none;
+            }
+
+            .main-content {
+                margin-left: 0;
+            }
+        }
+
+        @media (max-width: 767.98px) {
+            .main-content {
+                width: 100vw;
+                /* Ocupa todo el ancho de la pantalla */
+                margin-left: 0;
+                overflow-x: hidden;
+                /* Previene desbordamiento horizontal */
+            }
+
+            .table-responsive {
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+                /* Mejor desplazamiento en iOS */
+            }
+
+            .card-body {
+                padding: 15px;
+                /* Reducir padding en móviles */
+            }
+
+            .opciones {
+                width: auto;
+                /* Ancho flexible para columnas de opciones */
+                min-width: 120px;
+                /* Ancho mínimo para los botones */
+            }
+        }
+
+        /* Tus estilos personalizados existentes */
         .bd-placeholder-img {
             font-size: 1.125rem;
             text-anchor: middle;
@@ -17,61 +109,13 @@
             user-select: none;
         }
 
-        @media (min-width: 768px) {
-            .bd-placeholder-img-lg {
-                font-size: 3.5rem;
-            }
-        }
-
-        .b-example-divider {
-            height: 3rem;
-            background-color: rgba(0, 0, 0, .1);
-            border: solid rgba(0, 0, 0, .15);
-            border-width: 1px 0;
-            box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
-        }
-
-        .b-example-vr {
-            flex-shrink: 0;
-            width: 1.5rem;
-            height: 100vh;
-        }
-
-        .bi {
-            vertical-align: -.125em;
-            fill: currentColor;
-        }
-
-        .nav-scroller {
-            position: relative;
-            z-index: 2;
-            height: 2.75rem;
-            overflow-y: hidden;
-        }
-
-        .nav-scroller .nav {
-            display: flex;
-            flex-wrap: nowrap;
-            padding-bottom: 1rem;
-            margin-top: -1px;
-            overflow-x: auto;
-            text-align: center;
-            white-space: nowrap;
-            -webkit-overflow-scrolling: touch;
-        }
-
-        /* Establecer el color del enlace activo */
         .nav .nav-link.active {
             color: #ffffff !important;
-            /* Color de texto blanco */
             background-color: #89bef7 !important;
-            /* Fondo azul claro */
         }
 
-        /* Cambiar el color del enlace activo al pasar el cursor */
         .nav .nav-link.active:hover {
             background-color: #5592cf !important;
-            /* Fondo azul más oscuro */
         }
 
         .btnnav:focus,
@@ -96,29 +140,33 @@
 </head>
 
 <body>
-    <div class="container-fluid">
-        <div class="row">
-            {{-- Sidebar ocupa 2 columnas en pantallas md o más, oculto en pantallas pequeñas --}}
-            <div class="col-md-2 d-none d-md-block bg-primary text-white p-0">
-                @yield('menu')
-            </div>
+    <div class="main-wrapper">
+        <!-- Sidebar fijo -->
+        <aside class="sidebar-fixed d-none d-md-block">
+            @yield('menu')
+        </aside>
 
-            {{-- Contenido principal --}}
-            <div class="col-md-10 col-12 p-0">
-                {{-- Aquí puedes insertar el navbar normal --}}
+        <!-- Contenido principal -->
+        <div class="main-content">
+            <!-- Header ajustado -->
+            <header class="main-header">
                 @yield('header')
+            </header>
 
-                {{-- Aquí puedes agregar el contenido principal --}}
-                <main class="p-4">
-                    @yield('content')
-                </main>
-            </div>
+            <!-- Contenido desplazable -->
+            <main class="scrollable-content">
+                @yield('content')
+            </main>
         </div>
     </div>
+
     @include('componentes.admin.header-movil')
-    @include('componentes.admin.sidebar-movil') <!-- Este contiene solo el offcanvas -->
+    @include('componentes.admin.sidebar-movil')
 
     <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    @stack('scripts')
 </body>
 
 </html>

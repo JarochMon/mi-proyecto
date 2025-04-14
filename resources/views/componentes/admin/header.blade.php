@@ -13,7 +13,7 @@
 
         <div class="collapse navbar-collapse justify-content-end d-none d-md-block">
             <form class="d-flex col-6" role="search">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <input class="form-control me-2" type="search" placeholder="Buscar..." aria-label="Search">
                 <button class="btn btn-outline-success" type="submit">
                     <i class="bi bi-search text-success"></i>
                 </button>
@@ -32,7 +32,7 @@
                         </button>
                         <ul class="dropdown-menu dropdown-menu-end">
                             <li>
-                                <a type="button" class="dropdown-item dropbtn" href="#">
+                                <a type="button" class="dropdown-item dropbtn" href="/dashboard">
                                     <i class="bi bi-person-circle fs-5 pe-2"></i>
                                     Perfil
                                 </a>
