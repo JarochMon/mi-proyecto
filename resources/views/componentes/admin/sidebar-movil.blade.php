@@ -17,12 +17,17 @@
                     <i class="bi bi-people me-2"></i>Empleados</a>
             </li>
             <li class="nav-item">
-                <a href="#"
-                class="nav-link text-white">
-                    <i class="bi bi-people me-2"></i>Orders</a>
+                <a href={{ route('facturas.index') }}
+                class="nav-link text-white {{ request()->routeIs('facturas.*') ? 'active' : '' }}">
+                    <i class="bi bi-file-earmark-post me-2"></i>Facturacion
+                </a>
             </li>
-            <li><a href="#" class="nav-link text-white">Products</a></li>
-            <li><a href="#" class="nav-link text-white">Customers</a></li>
+            <li class="nav-item">
+                <a href={{ route('capacitaciones.index') }}
+                class="nav-link text-white {{ request()->routeIs('capacitaciones.*') ? 'active' : '' }}">
+                    <i class="bi bi-camera-reels me-2"></i>Capacitaciones
+                </a>
+            </li>
         </ul>
     </div>
 </div>

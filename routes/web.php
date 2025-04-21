@@ -21,6 +21,7 @@ Route::controller(dashboardController::class)->group(function () {
 //Empleados
 Route::controller(empladosController::class)->group(function () {
     Route::get('/empleados', 'index')->name('empleados.index');
+    Route::get('/obtener/empleados', 'get')->name('empleados.get');
 });
 
 //Facturas

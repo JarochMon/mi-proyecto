@@ -94,11 +94,31 @@
 
             .opciones {
                 width: auto;
-                /* Ancho flexible para columnas de opciones */
-                min-width: 120px;
-                /* Ancho mínimo para los botones */
+                min-width: 100px;
             }
         }
+
+        @media (max-width: 1610px) and (min-width: 768px) {
+            .main-content {
+                margin-left: 250px;
+                overflow-x: auto;
+            }
+
+            .table-responsive {
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+
+            .card-body {
+                padding: 10px;
+            }
+
+            .opciones {
+                min-width: 120px;
+                width: auto;
+            }
+        }
+
 
         /* Tus estilos personalizados existentes */
         .bd-placeholder-img {
